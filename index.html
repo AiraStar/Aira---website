@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aira's World 🎉</title>
-  <link rel="stylesheet" href="style.css">
   <script>
-    // Random science/nature fact generator
+    // Random science fact generator
     const facts = [
       "Did you know? There are more stars in the universe than grains of sand on all of Earth's beaches! 🌌✨",
       "Honey never spoils! Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old! 🍯🛖",
       "A group of flamingos is called a 'flamboyance'! 🦩💖",
       "The human nose can detect over 1 trillion different scents! 👃🏼🌸",
-      "Did you know? The longest mountain range on Earth is underwater, called the Mid-Ocean Ridge! 🌊🏔️",
+      "The longest mountain range on Earth is underwater, called the Mid-Ocean Ridge! 🌊🏔️",
       "Your body contains about 37.2 trillion cells! 🧬💪"
     ];
+
+    function getRandomFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      document.getElementById("factDisplay").innerText = facts[randomIndex];
+    }
 
     // Quiz questions and answers
     const quiz = [
@@ -38,13 +42,7 @@
     let currentQuestion = 0;
     let score = 0;
 
-    // Random fact generator function
-    function getRandomFact() {
-      const randomIndex = Math.floor(Math.random() * facts.length);
-      document.getElementById("factDisplay").innerText = facts[randomIndex];
-    }
-
-    // Start the quiz
+    // Start quiz
     function startQuiz() {
       const question = quiz[currentQuestion];
       document.getElementById("quizQuestion").innerText = question.question;
@@ -59,7 +57,7 @@
       document.getElementById("quizSection").style.display = 'block';
     }
 
-    // Check answer and give feedback
+    // Check answer and feedback
     function checkAnswer(selectedOption) {
       const correctAnswer = quiz[currentQuestion].answer;
       if (selectedOption === correctAnswer) {
@@ -72,57 +70,74 @@
       if (currentQuestion < quiz.length) {
         startQuiz();
       } else {
-        // Quiz finished, show result and celebration
         setTimeout(() => {
           alert(`🎉 Quiz finished! 🎉 You got ${score} out of ${quiz.length} correct!`);
-          if (score === quiz.length) {
-            document.getElementById("celebration").innerHTML = "🥳🎂 A piece of cake for you for doing a good job! 🏆🍰";
-          } else {
-            document.getElementById("celebration").innerHTML = "🎉 Great job! Keep learning and you'll ace the next quiz! 📚💡";
-          }
           document.getElementById("celebration").style.display = 'block';
         }, 500);
       }
     }
   </script>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    .star {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background-color: yellow;
+      border-radius: 50%;
+      animation: twinkle 1.5s infinite;
+    }
+    h1, h2 {
+      color: #6a4b9b;
+    }
+    button {
+      background-color: #6a4b9b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #d79ccf;
+    }
+    #quizSection {
+      margin-top: 20px;
+    }
+    #celebration {
+      display: none;
+      margin-top: 20px;
+      font-size: 20px;
+      color: #ff69b4;
+    }
+  </style>
 </head>
 <body>
-  <!-- Stars -->
-  <div class="star" style="top: 10%; left: 20%;"></div>
-  <div class="star" style="top: 50%; left: 60%;"></div>
-  <div class="star" style="top: 80%; left: 30%;"></div>
-  <div class="star" style="top: 25%; left: 80%;"></div>
-  <div class="star" style="top: 70%; left: 50%;"></div>
-
-  <!-- Main Content -->
-  <h1>Hey, Welcome to Aira's World! 🎉</h1>
-  <p>So happy you’re here! This is my little corner of the internet where I talk about all the things I love—like science, nature, and just cool stuff in general. 🌟</p>
-
+  <h1>Welcome to Aira's World 🎉</h1>
+  <p>Here you will find science, stars, and lots of fun! 🌟</p>
+  
   <section>
     <h2>About Me 🧑‍🔬✨</h2>
-    <p>I’m Aira, a girl who loves to learn and explore. 🌿 Whether it's plants, animals, or just staring up at the stars, I'm always up for an adventure! 🌠 I think the world is pretty amazing! 🌍</p>
+    <p>Hey! I’m Aira and I love exploring the wonders of science and nature. Let’s go on an adventure together! 🚀🌿</p>
   </section>
 
   <section>
-    <h2>Why I Love Science 🔬💡</h2>
-    <p>Science is everywhere! From how plants grow 🌱 to what’s happening in space 🚀, I love discovering how things work. It’s like solving puzzles, and there’s always something new to learn! 🧩</p>
-  </section>
-
-  <section>
-    <h2>Nature = Magic 🌳✨</h2>
-    <p>I think nature is full of surprises! 🌸 The more I explore, the more I realize there’s always something new and cool out there. Whether it’s hiking 🥾 through a forest or watching the stars 🌟, there's always magic around us. 🦄</p>
-  </section>
-
-  <section>
-    <h2>Want a Fun Fact? 🔍✨</h2>
-    <p>Click below to get a random science or nature fact! 🧠</p>
+    <h2>Fun Fact! 🧠💡</h2>
+    <p>Want to learn something cool? Click below for a random science fact! 😃</p>
     <button onclick="getRandomFact()">Get a Fun Fact 🧐</button>
     <p id="factDisplay" style="margin-top: 10px;"></p>
   </section>
 
   <section>
-    <h2>Test Your Knowledge! 🧠📚</h2>
-    <p>Ready for a mini quiz? Let’s see how much you know about science and nature. 🤔 Click the button below to start the quiz!</p>
+    <h2>Take the Quiz! 🧠📚</h2>
+    <p>Ready to test your science knowledge? Let’s do it! Click below to start the quiz! 🏁</p>
     <button onclick="startQuiz()">Start Quiz 🏁</button>
 
     <div id="quizSection" style="display: none;">
@@ -130,10 +145,9 @@
       <div id="quizOptions"></div>
     </div>
 
-    <!-- Celebration message -->
-    <div id="celebration" style="display: none; margin-top: 20px; font-size: 20px;"></div>
+    <div id="celebration" style="display: none;">🎉 You finished the quiz! 🏆🥳</div>
   </section>
-
+  
   <footer>Created by Anum ✨</footer>
 </body>
-</html>
+</html> 
