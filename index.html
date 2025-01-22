@@ -3,8 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aira's World</title>
+  <title>Aira's World 🎉</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Random science/nature fact generator
+    const facts = [
+      "Did you know? There are more stars in the universe than grains of sand on all of Earth's beaches! 🌌✨",
+      "Honey never spoils! Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old! 🍯🛖",
+      "A group of flamingos is called a 'flamboyance'! 🦩💖",
+      "The human nose can detect over 1 trillion different scents! 👃🏼🌸",
+      "Did you know? The longest mountain range on Earth is underwater, called the Mid-Ocean Ridge! 🌊🏔️",
+      "Your body contains about 37.2 trillion cells! 🧬💪"
+    ];
+
+    // Quiz questions and answers
+    const quiz = [
+      {
+        question: "What is the largest planet in our solar system? 🌍",
+        options: ["Earth 🌍", "Jupiter 🌕", "Mars 🔴"],
+        answer: "Jupiter 🌕"
+      },
+      {
+        question: "Which animal is known as the 'King of the Jungle'? 🦁",
+        options: ["Lion 🦁", "Elephant 🐘", "Tiger 🐅", "Bear 🐻"],
+        answer: "Lion 🦁"
+      },
+      {
+        question: "What is the chemical symbol for water? 💧",
+        options: ["O2 🌬️", "CO2 💨", "H2O 💧", "O3 🌫️"],
+        answer: "H2O 💧"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    // Random fact generator function
+    function getRandomFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      document.getElementById("factDisplay").innerText = facts[randomIndex];
+    }
+
+    // Start the quiz
+    function startQuiz() {
+      const question = quiz[currentQuestion];
+      document.getElementById("quizQuestion").innerText = question.question;
+      const options = document.getElementById("quizOptions");
+      options.innerHTML = '';
+      question.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.onclick = () => checkAnswer(option);
+        options.appendChild(btn);
+      });
+      document.getElementById("quizSection").style.display = 'block';
+    }
+
+    // Check answer and give feedback
+    function checkAnswer(selectedOption) {
+      const correctAnswer = quiz[currentQuestion].answer;
+      if (selectedOption === correctAnswer) {
+        score++;
+        alert("Correct! 🎉 Great job! 👏");
+      } else {
+        alert("Oops! That’s not right. Try again! ❌");
+      }
+      currentQuestion++;
+      if (currentQuestion < quiz.length) {
+        startQuiz();
+      } else {
+        // Quiz finished, show result and celebration
+        setTimeout(() => {
+          alert(`🎉 Quiz finished! 🎉 You got ${score} out of ${quiz.length} correct!`);
+          if (score === quiz.length) {
+            document.getElementById("celebration").innerHTML = "🥳🎂 A piece of cake for you for doing a good job! 🏆🍰";
+          } else {
+            document.getElementById("celebration").innerHTML = "🎉 Great job! Keep learning and you'll ace the next quiz! 📚💡";
+          }
+          document.getElementById("celebration").style.display = 'block';
+        }, 500);
+      }
+    }
+  </script>
 </head>
 <body>
   <!-- Stars -->
@@ -13,12 +93,47 @@
   <div class="star" style="top: 80%; left: 30%;"></div>
   <div class="star" style="top: 25%; left: 80%;"></div>
   <div class="star" style="top: 70%; left: 50%;"></div>
-  
+
   <!-- Main Content -->
-  <h1>Welcome to Aira's World</h1>
-  <p>Here you will find science, stars, and lots of fun!</p>
-  
-  <!-- Footer -->
-  <footer>Created by Anum</footer>
+  <h1>Hey, Welcome to Aira's World! 🎉</h1>
+  <p>So happy you’re here! This is my little corner of the internet where I talk about all the things I love—like science, nature, and just cool stuff in general. 🌟</p>
+
+  <section>
+    <h2>About Me 🧑‍🔬✨</h2>
+    <p>I’m Aira, a girl who loves to learn and explore. 🌿 Whether it's plants, animals, or just staring up at the stars, I'm always up for an adventure! 🌠 I think the world is pretty amazing! 🌍</p>
+  </section>
+
+  <section>
+    <h2>Why I Love Science 🔬💡</h2>
+    <p>Science is everywhere! From how plants grow 🌱 to what’s happening in space 🚀, I love discovering how things work. It’s like solving puzzles, and there’s always something new to learn! 🧩</p>
+  </section>
+
+  <section>
+    <h2>Nature = Magic 🌳✨</h2>
+    <p>I think nature is full of surprises! 🌸 The more I explore, the more I realize there’s always something new and cool out there. Whether it’s hiking 🥾 through a forest or watching the stars 🌟, there's always magic around us. 🦄</p>
+  </section>
+
+  <section>
+    <h2>Want a Fun Fact? 🔍✨</h2>
+    <p>Click below to get a random science or nature fact! 🧠</p>
+    <button onclick="getRandomFact()">Get a Fun Fact 🧐</button>
+    <p id="factDisplay" style="margin-top: 10px;"></p>
+  </section>
+
+  <section>
+    <h2>Test Your Knowledge! 🧠📚</h2>
+    <p>Ready for a mini quiz? Let’s see how much you know about science and nature. 🤔 Click the button below to start the quiz!</p>
+    <button onclick="startQuiz()">Start Quiz 🏁</button>
+
+    <div id="quizSection" style="display: none;">
+      <p id="quizQuestion"></p>
+      <div id="quizOptions"></div>
+    </div>
+
+    <!-- Celebration message -->
+    <div id="celebration" style="display: none; margin-top: 20px; font-size: 20px;"></div>
+  </section>
+
+  <footer>Created by Anum ✨</footer>
 </body>
 </html>
